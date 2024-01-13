@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TeknikMarket.Model.Entity;
 
-namespace TeknikMarket.Model.Entity
+namespace TeknikMarket.DataAccess.Concrate.EntityFramework.Context
 {
     public partial class TeknikMarketContext : DbContext
     {
