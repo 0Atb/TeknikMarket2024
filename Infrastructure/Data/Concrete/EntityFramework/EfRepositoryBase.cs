@@ -1,18 +1,13 @@
 ﻿using Infrastructure.Data.Abstract;
 using Infrastructure.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Concrete.EntityFramework
 {
     public class EfRepositoryBase<TEntity, TContext> : IRepository<TEntity>
          where TEntity : AudiTableEntity, IBaseDomain, new()
-        where TContext : DbContext , new()
+        where TContext : DbContext, new()
     {
         public void Insert(TEntity entity)
         {
@@ -36,7 +31,7 @@ namespace Infrastructure.Data.Concrete.EntityFramework
         {
             using (TContext ctx = new TContext())
             {
-                TEntity entity = ctx.Set<TEntity>().FirstOrDefault(x=>x.Id==Id);
+                TEntity entity = ctx.Set<TEntity>().FirstOrDefault(x => x.Id == Id);
                 ctx.Set<TEntity>().Remove(entity);
                 ctx.SaveChanges();
             }
@@ -47,7 +42,7 @@ namespace Infrastructure.Data.Concrete.EntityFramework
             using (TContext ctx = new TContext())
             {
                 IQueryable<TEntity> query = ctx.Set<TEntity>();
-                if (includelist.Length>0)
+                if (includelist.Length > 0)
                 {
                     foreach (var item in includelist)
                     {
@@ -86,7 +81,7 @@ namespace Infrastructure.Data.Concrete.EntityFramework
                         query = query.Include(item);
                     }
                 }
-                return query.SingleOrDefault(x=>x.Id == Id);
+                return query.SingleOrDefault(x => x.Id == Id);
             }
         }
 
@@ -95,7 +90,7 @@ namespace Infrastructure.Data.Concrete.EntityFramework
             using (TContext ctx = new TContext())
             {
                 TEntity ent = ctx.Set<TEntity>().Attach(entity).Entity;
-                ctx.Entry(entity).State= EntityState.Modified;
+                ctx.Entry(entity).State = EntityState.Modified;
                 ctx.SaveChanges();
             }
         }
