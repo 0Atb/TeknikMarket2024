@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Absract\" />
-    <Folder Include="Concrate\EntityFramework\Repository\" />
+    <Folder Include="Concrete\EntityFramework\Repository\" />
   </ItemGroup>
 
   <ItemGroup>
