@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\TeknikMarket.DataAccess\TeknikMarket.DataAccess.csproj" />
+    <ProjectReference Include="..\TeknikMarket.Model\TeknikMarket.Model.csproj" />
+  </ItemGroup>
+
 </Project>
