@@ -44,12 +44,13 @@ namespace Infrastructure.Data.Concrete.EntityFramework
                 IQueryable<TEntity> query = ctx.Set<TEntity>();
                 if (includelist.Length > 0)
                 {
-                    foreach (var item in includelist)
+                    foreach (string item in includelist)
                     {
                         query = query.Include(item);
                     }
                 }
                 return query.SingleOrDefault(filter);
+                //return filter == null ? query.ToList().FirstOrDefault() : query.SingleOrDefault();
             }
         }
 

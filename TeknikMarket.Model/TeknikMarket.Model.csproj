@@ -10,8 +10,6 @@
     <Folder Include="DTO\" />
     <Folder Include="Entity\" />
     <Folder Include="Enum\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Static\" />
   </ItemGroup>
 
   <ItemGroup>

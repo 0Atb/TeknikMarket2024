@@ -1,3 +1,14 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Newtonsoft.Json;
+using TeknikMarket.Bussiness.Absract;
+using TeknikMarket.Bussiness.Concrete;
+using TeknikMarket.Bussiness.ValidationRule.Area.Admin;
+using TeknikMarket.DataAccess.Absract;
+using TeknikMarket.DataAccess.Concrete.EntityFramework.Repository;
+using TeknikMarket.Model.ViewModel.Area.Admin;
+using TeknikMarket.MVCUI.Areas.Admin.Fiter;
+
 namespace TeknikMarket.MVCUI
 {
     public class Program
@@ -7,7 +18,33 @@ namespace TeknikMarket.MVCUI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddNewtonsoftJson(option =>
+            {
+                option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddFluentValidationClientsideAdapters();
+
+            builder.Services.AddSingleton<IAdminBS, AdminBS>();
+            builder.Services.AddSingleton<IAdminRepository, EfAdminRepository>();
+
+
+
+            //-----------SESSION
+            builder.Services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+             });
+            builder.Services.AddSingleton<ISessionManeger, SessionManager>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+            //-----------VALIDATION
+            builder.Services.AddSingleton<IValidator<LogInViewModel>, LogInPasswordValidator>();
+
+
+
+
 
             var app = builder.Build();
 
@@ -21,6 +58,9 @@ namespace TeknikMarket.MVCUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
@@ -37,10 +77,9 @@ namespace TeknikMarket.MVCUI
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
             });
 
-            
+
 
             app.Run();
         }
