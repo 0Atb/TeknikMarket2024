@@ -13,5 +13,15 @@ namespace TeknikMarket.MVCUI.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult Contact()
+        {
+
+            return View();
+        }
+        public IActionResult Profile()
+        {
+
+            return View();
+        }
     }
 }

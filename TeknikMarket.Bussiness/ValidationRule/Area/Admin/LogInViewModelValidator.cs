@@ -8,9 +8,9 @@ using TeknikMarket.Model.ViewModel.Area.Admin;
 
 namespace TeknikMarket.Bussiness.ValidationRule.Area.Admin
 {
-    public class LogInPasswordValidator: AbstractValidator<LogInViewModel>
+    public class LogInViewModelValidator: AbstractValidator<LogInViewModel>
     {
-        public LogInPasswordValidator()
+        public LogInViewModelValidator()
         {
             RuleFor(x => x.Email).NotEmpty().WithMessage("Lütfen Email Alanını Boş Bırakmayınız.").NotNull().WithMessage("Email Alanı Zorunlu").EmailAddress().WithMessage("Lütfen Email Formatında Giriniz.").Equal(x=>x.Email).WithMessage("Email Eşletmiyor.");
 

@@ -40,7 +40,7 @@ namespace TeknikMarket.MVCUI
 
 
             //-----------VALIDATION
-            builder.Services.AddSingleton<IValidator<LogInViewModel>, LogInPasswordValidator>();
+            builder.Services.AddSingleton<IValidator<LogInViewModel>, LogInViewModelValidator>();
 
 
 
