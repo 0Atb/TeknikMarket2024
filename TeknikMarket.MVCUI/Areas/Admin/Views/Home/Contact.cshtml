@@ -1,13 +1,48 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Contact";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+@model ContactViewModel
+<!-- Main content -->
+<section class="content">
 
-<h1>Contact</h1>
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-body row">
+            <div class="col-5 text-center d-flex align-items-center justify-content-center">
+                <div class="">
+                    <h2>Admin<strong>LTE</strong></h2>
+                    <p class="lead mb-5">
+                        123 Testing Ave, Testtown, 9876 NA<br>
+                        Phone: +1 234 56789012
+                    </p>
+                </div>
+            </div>
+            <div class="col-7">
+                <form method="post" action="/Admin/Home/Contact">
+                    <div class="form-group">
+                        <label for="inputName">Name</label>
+                        <input asp-for="Name" type="text" id="inputName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">E-Mail</label>
+                        <input asp-for="Email" type="email" id="inputEmail" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSubject">Subject</label>
+                        <input asp-for="Subject" type="text" id="inputSubject" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMessage">Message</label>
+                        <textarea asp-for="Message" id="inputMessage" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input id="btnMail" type="submit" class="btn btn-primary" value="Mesajı gönder">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<a target="_blank" href="https://www.google.com/maps/place/39%C2%B058'56.4%22N+32%C2%B044'38.3%22E/39.982343,32.7432523,18z/data=!3m1!4b1!4m4!3m3!8m2!3d39.982343!4d32.743984?entry=ttu">Tıkla gelsin</a>
-
-
-
-<a href="tel:123-456-7890">Telefon</a>
+</section>
+<!-- /.content -->

@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model CategoryViewModel
+
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Kategori Ekle</button>
+    <a class="btn btn-primary">Kategori Ekle</a>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Kategori Listesi</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>KATEGORİ ADI</th>
+                            <th>KATEGORİ GÖRÜNÜMÜ</th>
+                            <th>SIRA</th>
+                            <th>AKTİFLİK</th>
+                            <th>DÜZENLE</th>
+                            <th>SİL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Category item in Model.CategoriesList)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Information</td>
+                                <td>@item.Sorting</td>
+                                <td>@item.IsDeleted</td>
+                                <td>
+                                    <a class="btn btn-success">Düzenle</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kategori Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Kategori Adi</label>
+                        <input asp-for="Name" type="text" class="form-control" placeholder="Kategori Adı">
+                    </div>
+                    @*<div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <select asp-for="MainCategoryId" type="text" class="form-control" asp-items="Model.CategorySelectList"></select>
+                    </div>*@
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label asp-for="IsDeleted" class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input asp-for="Information" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <input asp-for="Sorting" type="text" class="form-control">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>

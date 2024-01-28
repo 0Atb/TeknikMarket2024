@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CrossCuttingConcern\Crypto\" />
     <Folder Include="Data\Concrete\AdoNet\" />
     <Folder Include="Data\Concrete\Dapper\" />
     <Folder Include="Data\Concrete\Nhibernate\" />

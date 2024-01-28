@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.CrossCuttingConcern.MailOp;
+using Microsoft.AspNetCore.Mvc;
+using TeknikMarket.Model.Entity;
+using TeknikMarket.Model.Static;
+using TeknikMarket.Model.ViewModel.Area.Home;
 using TeknikMarket.MVCUI.Areas.Admin.Fiter;
 
 namespace TeknikMarket.MVCUI.Areas.Admin.Controllers
@@ -13,15 +17,33 @@ namespace TeknikMarket.MVCUI.Areas.Admin.Controllers
         {
             return View();
         }
+
+        //[AktifKullaniciFilter]
         public IActionResult Contact()
         {
+            ContactViewModel model = new ContactViewModel();
 
-            return View();
+            //sitenin içine asp-for="" yazanların yerine veri gönderiyor
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Contact(ContactViewModel model)
+        {
+            // sitenin içinden model dolu olarak geliyor onları işleme sokma yeri
+            MailManager.Seed(model.Email, model.Subject,"Merhaba Sayın : " + model.Name +" "+ model.Message);
+
+
+
+            return View(model);
         }
         public IActionResult Profile()
         {
 
+
             return View();
         }
+
     }
 }

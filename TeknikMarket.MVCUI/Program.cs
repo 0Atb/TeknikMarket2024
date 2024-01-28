@@ -28,6 +28,8 @@ namespace TeknikMarket.MVCUI
 
             builder.Services.AddSingleton<IAdminBS, AdminBS>();
             builder.Services.AddSingleton<IAdminRepository, EfAdminRepository>();
+            builder.Services.AddSingleton<ICategoryBS, CategoryBS>();
+            builder.Services.AddSingleton<ICategoryRepository, EfCategoryRepository>();
 
 
 
